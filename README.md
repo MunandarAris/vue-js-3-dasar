@@ -58,7 +58,7 @@ Contoh :
 | `<h1 v-bind:class="text-red"> Hay </h1>` | `<h1 :class="text-red"> Hay </h1>`
 Kesimpulan : menghilangkan v-bind dengan langsung menulis attribute yang ingin kita gunakan :class, :id, :style, :disabled, dll..
 
-##### Conditional Rendering
+##### Conditional Rendering 🤝
 
 1. IF => hanya memiliki satu kondisi, dari contoh di bawah berarti div tersebut tidak tampil
 
@@ -91,5 +91,68 @@ Perbedaan ketika menggunakan v-show dan if di elemen html kita ?
 | ---- | ---- |
 | `<h1 v-show="false">Hai</h1>` | `<h1 style="display:none"></h1>`|
 |`<h1 v-if="false"> Hai </h1>` | Browser tidak akan merender html kita jadi ini ketika di inspect element tidak akan ada |
+
+##### List Rendering 👩‍🎤
+
+Digunakan untuk melakukan sebuah looping data berbentuk array maupun object, disini akan ada beberapa cara looping di vue js dengan data yang berbeda
+
+1. Looping Data Array
+
+```sh
+const names = ["Andi", "Andu","Pandu"]
+
+<h3 v-for="(name, index) in names" :key="index">{{name}}</h3>
+```
+
+2. Looping Array Of Object
+
+```sh
+const dataStudents = [
+{
+id : 10002,
+name : "Andi",
+old : 19,
+address : "Jakarta",
+}
+
+<!--untuk menampilkan data lebih dari satu dalam sebuah loop bisa membungkusnya menggunakan tag template atau tag div-->
+
+<template v-for="student in dataStudents" :key="student.id">
+    <h1>{{student.name}}</h1>
+    <h2>{{student.old}}</h2>
+    <p>{{student.address}}</p>
+</template>
+]
+```
+
+3. Looping Array In Object Of Array
+
+```sh
+const frameworks = [
+{
+    language : "JS",
+    framework : ["React Js", "Svelt", "Vue Js", "Angular Js"]
+}
+
+<div v-for="(framework, index) in frameworks" :key="index">
+<h1>{{framework.language}}</h1>
+<p v-for="(data, index) in framework.framework" :key="index">
+{{data}}</p>
+</div>
+]
+```
+
+4. Looping On Object Data
+
+```sh
+const names = {
+    first : "Ananda",
+    last : "Kuase"
+}
+
+<h1 v-for="(name, key, index) in names" :key="index">
+{{name.first}} {{name.last}}
+</h1>
+```
 
 # 🕵️ Terimakasih Tunggu Kelanjutannya 🕵️
